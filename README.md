@@ -1,13 +1,14 @@
-# React Assignment
-
-| This assignment is aimed to help us know more about your `React` skills.
-
 # To run
 
 ```bash
 cd foodselection
 npm start
 ```
+
+# React Assignment
+
+| This assignment is aimed to help us know more about your `React` skills.
+
 
 <!-- toc -->
 
