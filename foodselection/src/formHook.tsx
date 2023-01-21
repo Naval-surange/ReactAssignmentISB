@@ -6,6 +6,7 @@ export function useMultistepForm(steps: ReactElement[]) {
     function next() {
         setCurrentSetp(i => {
             if (i + 1 >= steps.length) {
+                console.log("end");
                 return i;
             }
             return i + 1;

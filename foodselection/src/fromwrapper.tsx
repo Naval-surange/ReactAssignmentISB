@@ -6,19 +6,14 @@ type FromWrapperProps = {
 
 export function FormWrapper({ title, children }: FromWrapperProps) {
     return (
-        <div>
-            <h2 style={{
-                textAlign: "center",
-                margin: 0,
-                marginBottom: "2rem",
-            }}
-            >{title}</h2>
-            <div style={{
-                display: "grid",
-                gap: "1rem .5rem",
-                justifyContent: "flex-start",
-                gridTemplateColumns: "auto minmax(auto, 400px)",
-            }}  >{children}</div>
+        <div className="">
+
+            <h2 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">{title}</h2>
+
+            <br />
+            <div>
+                {children}
+            </div>
         </div>
     )
 }

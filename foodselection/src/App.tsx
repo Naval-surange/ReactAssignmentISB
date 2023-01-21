@@ -1,9 +1,15 @@
 import React from 'react';
+import "react-step-progress-bar/styles.css";
+import { ProgressBar, Step } from "react-step-progress-bar";
+
+
 import { useMultistepForm } from "./formHook"
 import { Step1 } from './step1';
 import { Step2 } from './step2';
 import { Step3 } from './step3';
 import { Step4 } from './step4';
+
+
 
 type FormData = {
   catagory: string;
@@ -21,7 +27,7 @@ let initialData: FormData = {
   catagories: ["lunch", "dinner", "breakfast"],
   numberOfPeople: "1",
   restraunts: [],
-  restraunt: "heheh",
+  restraunt: "",
   foodItems: [],
   chosenFoodItems: [],
   servingSizes: [],
@@ -32,7 +38,8 @@ function App() {
 
   function updateData(data: Partial<FormData>) {
     setData(d => {
-      return { ...d, ...data }});
+      return { ...d, ...data }
+    });
   }
 
 
@@ -50,23 +57,18 @@ function App() {
 
 
   return (
-    <div style={{
-      position: "relative",
-      background: "white",
-      border: "1px solid black",
-      padding: "2rem",
-      margin: "1rem",
-      borderRadius: ".5rem",
-      fontFamily: "Arial",
-    }}>
+    <div className="max-w-m p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+      style={{
+        border: "2px solid #ccc",
+        padding: "2rem",
+        borderRadius: ".5rem",
+        fontFamily: "Arial",
+        maxWidth: "800px",
+        margin: "auto",
+        marginTop: "2rem",
+      }}>
       <form onSubmit={onSubmit}>
-        <div style={{
-          position: "absolute",
-          top: "0.5rem",
-          right: "0.5rem",
-        }}>
-          {currentStep + 1} / {steps.length}
-        </div>
+
         {step}
         <div style={{
           marginTop: "1rem",
@@ -74,12 +76,111 @@ function App() {
           gap: "0.5rem",
           justifyContent: "flex-end",
         }}>
-          {currentStep !== 0 && <button type="button" onClick={() => prev()}>Prev</button>}
-          <button type="submit" >{currentStep !== steps.length - 1 ? "Next" : "Finish"}</button>
+
+          {
+            currentStep !== 0 &&
+            <>
+              <button type="button" onClick={() => prev()} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke={"#ffffff"} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H6M12 5l-7 7 7 7" /></svg>
+                Previous
+              </button>
+            </>
+          }
+
+          <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            {currentStep !== steps.length - 1 ? "Next" : "Finish"}
+            <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke={"#ffffff"} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h13M12 5l7 7-7 7" /></svg>
+          </button>
+
         </div>
-      </form>
-    </div>
+        <div style={{ marginTop: "2em" }}>
+          <ProgressBar
+            percent={(currentStep + 1) / steps.length * 100}
+          >
+            <Step>
+              {({ accomplished }) => (
+
+                <div style={{
+                  color: "white",
+                  width: "30px",
+                  height: "30px",
+                  fontSize: "12px",
+                  backgroundColor: !accomplished ? "rgba(211, 211, 211, 0.8)" : "rgba(0, 116, 217, 1)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                >
+                  {1}
+                </div>
+              )}
+            </Step>
+            <Step>
+              {({ accomplished }) => (
+
+                <div style={{
+                  color: "white",
+                  width: "30px",
+                  height: "30px",
+                  fontSize: "12px",
+                  backgroundColor: !accomplished ? "rgba(211, 211, 211, 0.8)" : "rgba(0, 116, 217, 1)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                >
+                  {2}
+                </div>
+              )}
+            </Step>
+            <Step>
+              {({ accomplished }) => (
+
+                <div style={{
+                  color: "white",
+                  width: "30px",
+                  height: "30px",
+                  fontSize: "12px",
+                  backgroundColor: !accomplished ? "rgba(211, 211, 211, 0.8)" : "rgba(0, 116, 217, 1)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                >
+                  {3}
+                </div>
+              )}
+            </Step>
+            <Step>
+              {({ accomplished }) => (
+
+                <div style={{
+                  color: "white",
+                  width: "30px",
+                  height: "30px",
+                  fontSize: "12px",
+                  backgroundColor: !accomplished ? "rgba(211, 211, 211, 0.8)" : "rgba(0, 116, 217, 1)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                >
+                  {4}
+                </div>
+              )}
+            </Step>
+          </ProgressBar>
+
+        </div>
+      </form >
+    </div >
   );
 }
 
 export default App;
+
+
